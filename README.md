@@ -1,5 +1,12 @@
 # dockerfile_nginx-web
-FROM nginx:latest
-RUN apt-update
-RUN apt-get install -y git
-RUN git pull https://github.com/oscarplatoon/static-webpage.git
+FROM ubuntu
+
+RUN apt-get update
+
+RUN apt-get install nginx -y
+
+COPY index.html /var/www/html/
+
+EXPOSE 80
+
+CMD [“nginx”,”-g”,”daemon off;”]
